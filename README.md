@@ -1,4 +1,4 @@
-# deepl-tr-async ![build](https://github.com/ffreemt/deepl-tr-async/workflows/build/badge.svg)[![codecov](https://codecov.io/gh/ffreemt/deepl-tr-async/branch/master/graph/badge.svg)](https://codecov.io/gh/ffreemt/deepl-tr-async)
+# deepl-tr-async ![build](https://github.com/ffreemt/deepl-tr-async/workflows/build/badge.svg)[![codecov](https://codecov.io/gh/ffreemt/deepl-tr-async/branch/master/graph/badge.svg)](https://codecov.io/gh/ffreemt/deepl-tr-async)[![PyPI version](https://badge.fury.io/py/deepl-tr-async.svg)](https://badge.fury.io/py/deepl-tr-async)
 deepl translate for free with async and proxy support, based on pyppeteer
 
 ### Installation
