@@ -1,5 +1,8 @@
 # poetry build
 # poetry publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+# export POETRY_PYPI_TOKEN_PYPI=my-token
+# export POETRY_HTTP_BASIC_PYPI_USERNAME=username
+# export POETRY_HTTP_BASIC_PYPI_PASSWORD=password
 name: build
 
 on: [push]
@@ -41,4 +44,7 @@ jobs:
 
     - name: Publish to PyPI
       run: |
-        poetry publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+      env:
+        POETRY_HTTP_BASIC_PYPI_USERNAME: ${{ secrets.PYPI_USER }}
+        POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        poetry publish
