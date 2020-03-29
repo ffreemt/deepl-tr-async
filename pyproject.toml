@@ -30,6 +30,7 @@ polyglot = "^16.7.4"
 fuzzywuzzy = "^0.18.0"
 pyinstaller = "^3.6"
 tqdm = "^4.43.0"
+flake8 = "^3.7.9"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
