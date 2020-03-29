@@ -32,8 +32,8 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        poetry run flake8 . --count --exit-zero --max-complexity=20 --ignore=E501,F401,E302 --statistics
-      - name: Test with pytest
+        poetry run flake8 . --count --exit-zero --max-complexity=35 --ignore=E501,F401,E302,W292,F811,F841 --statistics
+      - name: Test with pytest,
         run: poetry run pytest tests
     - name: Build Python package
       run: |
