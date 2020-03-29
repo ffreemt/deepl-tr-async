@@ -23,7 +23,7 @@ jobs:
       with:
         python_version: 3.8.0
         poetry_version: 0.12.17
-        working_directory: ./working_dir # Optional, defaults to '.'
+        # working_directory: ./working_dir # Optional, defaults to '.'
         args: install
 
     - name: Lint with flake8
