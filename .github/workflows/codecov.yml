@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies  # https://molecule.readthedocs.io/en/latest/testing.html
       run: |
         python3 -m pip install --upgrade pip
-        apt install libicu-dev
+        apt-cache install libicu-dev
     - name: Install Poetry
       uses: abatilo/actions-poetry@v1.5.0
       with:
