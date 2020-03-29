@@ -18,7 +18,7 @@ jobs:
         sudo apt-get install libicu-dev
         python -m pip install --upgrade pip
         python -m pip install poetry
-        poetry install
+        poetry install -v
         poetry run python -m pytest -v --cov=deepl_tr_async --cov-report=xml --cov-report=term --cov-report=html
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1.0.5
