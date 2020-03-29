@@ -296,7 +296,7 @@ async def google_tr_async(
     return res
 
 
-def google_mpages(
+def google_mpages(  # pragrma: no cover
         sents: Union[str, List[str]],
         from_lang: str = "auto",
         to_lang: str = "auto",
@@ -310,7 +310,7 @@ def google_mpages(
     """ multiple pages
     """
 
-    if loop is None:
+    if loop is None:  # pragrma: no cover
         loop = LOOP
     # if loop.is_closed(): loop = asyncio.new_event_loop()
 

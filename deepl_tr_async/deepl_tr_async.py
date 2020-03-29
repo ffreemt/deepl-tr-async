@@ -369,7 +369,7 @@ async def deepl_tr_async(
     return res
 
 
-def deepl_mpages(
+def deepl_mpages(  # pragrma: no cover
         sents: Union[str, List[str]],
         from_lang: str = "auto",
         to_lang: str = "auto",

@@ -16,8 +16,8 @@ jobs:
     - name: Install dependencies  # https://molecule.readthedocs.io/en/latest/testing.html
       run: |
         sudo apt-get install libicu-dev
-        python3 -m pip install --upgrade pip
-        python3 -m pip install poetry
+        python -m pip install --upgrade pip
+        python -m pip install poetry
         poetry install
         poetry run python -m pytest -v --cov=deepl_tr_async --cov-report=xml --cov-report=term --cov-report=html
     - name: Upload coverage to Codecov
