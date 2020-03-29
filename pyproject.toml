@@ -12,7 +12,6 @@ classifiers = [
     "Environment :: Console",
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Python Modules",
-    "Topic :: Software Development :: Tools",
 ]
 [tool.poetry.dependencies]
 python = "^3.6"

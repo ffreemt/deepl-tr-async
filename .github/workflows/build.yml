@@ -47,4 +47,4 @@ jobs:
         POETRY_HTTP_BASIC_PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         # POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKENV }}
       run: |
-        poetry publish
+        poetry publish -v
