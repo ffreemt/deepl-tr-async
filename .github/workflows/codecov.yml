@@ -1,0 +1,38 @@
+name: Codecov
+on: [push]
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: [3.6]
+    steps:
+    - uses: actions/checkout@master
+    - name: Setup Python
+      uses: actions/setup-python@master
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install Poetry
+      uses: abatilo/actions-poetry@v1.5.0
+      with:
+        python_version: 3.6.7
+        poetry_version: 1.0.5
+        args: install
+
+    - name: Generate coverage report
+      uses: abatilo/actions-poetry@v1.5.0
+      with:
+        python_version: 3.6.7
+        poetry_version: 1.0.5
+        args: run python -m  pytest -v --cov=deepl_tr_async --cov-report=xml --cov-report=term --cov-report=html
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        yml: ./codecov.yml
+        fail_ci_if_error: true
