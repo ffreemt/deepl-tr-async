@@ -28,7 +28,7 @@ def detect_lang(text1: str, name: Union[bool, int] = False) -> str:
     Detect Chinese and other languages using polyglot.
     """
 
-    if len(text1) == 0:
+    if text1.strip():
         detected = "en"
         if name:
             detected = "english"
