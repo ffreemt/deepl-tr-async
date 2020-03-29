@@ -17,12 +17,28 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        # python -m pip install --upgrade pip
-        # pip install -r requirements.txt
-        python -m pip install --upgrade poetry
-        poetry install -v
+
+    - name: Install Poetry  # https://medium.com/@vanflymen/blazing-fast-ci-with-github-actions-poetry-black-and-pytest-9e74299dd4a5
+      uses: dschep/install-poetry-action@v1.2
+
+    - name: Cache Poetry virtualenv
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: ~/.virtualenvs
+        key: poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys: |
+          poetry-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Set Poetry config
+        run: |
+          poetry config settings.virtualenvs.in-project false
+          poetry config settings.virtualenvs.path ~/.virtualenvs
+
+      - name: Install Dependencies
+        run: poetry install
+        if: steps.cache.outputs.cache-hit != 'true'
+
     - name: Lint with flake8
       run: |
         pip install flake8
@@ -30,14 +46,13 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=14  --ignore=E501,F401 --statistics
-    - name: Test with pytest
-      run: |
-        pip install pytest
-        pytest
+      - name: Test with pytest
+        run: poetry run pytest tests
     - name: Build Python package
       run: |
         # pip install wheel twine; python setup.py sdist bdist_wheel
         poetry build
+        poetry add twine
     - name: Twine check
       run: |
         twine check dist/*
