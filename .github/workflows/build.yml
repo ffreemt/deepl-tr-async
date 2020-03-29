@@ -23,40 +23,19 @@ jobs:
       run: |
         sudo apt-get install libicu-dev
         # python3 -m pip install --upgrade pip
-    - name: Install Poetry  # https://github.com/marketplace/actions/python-poetry-action
-      uses: abatilo/actions-poetry@v1.5.0
-      with:
-        # python_version: 3.8.0
-        # poetry_version: 0.12.17
-        python_version: 3.6.7
-        poetry_version: 1.0.5
-        # working_directory: ./working_dir # Optional, defaults to '.'
-        args: install
-
+        poetry install
     - name: Lint with flake8
-      uses: abatilo/actions-poetry@v1.5.0
-      with:
-        python_version: 3.6.7
-        poetry_version: 1.0.5
-        args: run python -m flake8 . --count --exit-zero --max-complexity=35 --ignore=E501,F401,E302,W292,F811,F841 --statistics
+      run: |
+        poetry run python -m flake8 . --count --exit-zero --max-complexity=35 --ignore=E501,F401,E302,W292,F811,F841 --statistics
 
     - name: Test with pytest
-      uses: abatilo/actions-poetry@v1.5.0
-      with:
-        python_version: 3.6.7
-        poetry_version: 1.0.5
-        args: run python -m pytest tests
+      run: |
+        poetry run python -m pytest tests
 
     - name: Build Python package
-      uses: abatilo/actions-poetry@v1.5.0
-      with:
-        python_version: 3.6.7
-        poetry_version: 1.0.5
-        args: build
+      run: |
+        poetry build
 
     - name: Publish to PyPI
-      uses: abatilo/actions-poetry@v1.5.0
-      with:
-        python_version: 3.6.7
-        poetry_version: 1.0.5
-        # args: publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        poetry publish -u ${{ secrets.PYPI_USERNAME }} -p ${{ secrets.PYPI_PASSWORD }}

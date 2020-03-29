@@ -33,6 +33,7 @@ tqdm = "^4.43.0"
 flake8 = "^3.7.9"
 pyicu = "^2.4.3"
 pycld2 = "^0.41"
+pytest-cov = "^2.8.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
