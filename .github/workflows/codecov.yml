@@ -15,7 +15,7 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies  # https://molecule.readthedocs.io/en/latest/testing.html
       run: |
-        sudo python3 -m pip install --upgrade pip
+        # python3 -m pip install --upgrade pip
         sudo apt-cache install libicu-dev
     - name: Install Poetry
       uses: abatilo/actions-poetry@v1.5.0
