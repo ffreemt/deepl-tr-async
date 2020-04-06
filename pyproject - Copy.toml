@@ -1,0 +1,55 @@
+[tool.poetry]
+name = "deepl-tr-async"
+version = "0.0.2"
+description = "deepl translate for free, based no pyppeteer"
+authors = ["ffreemt"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/ffremt/deepl-tr-async"
+repository = "https://github.com/ffremt/deepl-tr-async"
+keywords = ["mt", "language", "learning"]
+classifiers = [
+    "Environment :: Console",
+    "Framework :: MT",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Machine Translation",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Tools",
+]
+[tool.poetry.dependencies]
+python = "^3.6"
+pyperclip = "^1.7.0"
+pyppeteer = "^0.0.25"
+pyquery = "^1.4.1"
+python-dotenv = "^0.12.0"
+logzero = "^1.5.0"
+environs = "^7.3.1"
+linetimer = "^0.1.4"
+absl-py = "^0.9.0"
+polyglot = "^16.7.4"
+fuzzywuzzy = "^0.18.0"
+pyinstaller = "^3.6"
+tqdm = "^4.43.0"
+flake8 = "^3.7.9"
+pyicu = "^2.4.3"
+pycld2 = "^0.41"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+# New scripts
+[tool.poetry.scripts]
+deepl-tr = "deepl_tr_async.__main__:main"
+# my-script = "xtl_read_assistant.log_revision:start"
+# hello = "xtl_read_assistant.read_assistant:hello"
+
+# [build-system]
+# requires = ["poetry>=0.12"]
+# build-backend = "poetry.masonry.api"
+
+[tool.intreehooks]
+build-backend = "poetry.masonry.api"
+[build-system]
+requires = ["intreehooks"]
+build-backend = "intreehooks:loader"
+

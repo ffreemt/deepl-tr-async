@@ -26,6 +26,19 @@ python -c "import deepl_tr_async; print(deepl_tr_async.__version__)"
 
 ### Usage
 
+#### 命令行调用
+* 翻译系统剪贴板
+  `deepl-tr`
+* 翻译终端提供的句子
+  `deepl-tr --copyfrom=false this is a test`
+    <!--img src="img\sample2.png" height="170px" /-->
+  ![img](.\img\copyfrom-false.png)
+* 帮助：
+  `deepl-tr --helpfull`
+    <!--img src="img\sample2.png" height="170px" /-->
+  ![img](.\img\helpfull.png)
+
+#### 程序调用
 ```
 import asyncio
 from deepl_tr_async import deepl_tr_async
