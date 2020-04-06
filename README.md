@@ -32,11 +32,11 @@ python -c "import deepl_tr_async; print(deepl_tr_async.__version__)"
 * 翻译终端提供的句子
   `deepl-tr --copyfrom=false this is a test`
     <!--img src="img\sample2.png" height="170px" /-->
-  ![img](.\img\copyfrom-false.png)
+  ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/copyfrom-false.png)
 * 帮助：
   `deepl-tr --helpfull`
-    <!--img src="img\sample2.png" height="170px" /-->
-  ![img](.\img\helpfull.png)
+    <!--img src="https://github.com/ffreemt/deepl-tr-async/blob/master/img/copyfrom-false.png" height="170px" /-->
+  ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/helpfull.png)
 
 #### 程序调用
 ```
