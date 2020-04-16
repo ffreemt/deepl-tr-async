@@ -10,7 +10,7 @@ from deepl_tr_async import deepl_tr_async
 LOOP = asyncio.get_event_loop()
 
 def test_version():
-    assert __version__ == '0.0.1'
+    assert __version__ == '0.0.2'
 
 # @pytest.mark.asyncio
 def test_deepl_en_zh(caplog):

@@ -11,7 +11,7 @@ from deepl_tr_async.google_tr_async import google_tr_async
 LOOP = asyncio.get_event_loop()
 
 def test_version():
-    assert __version__ == '0.0.1'
+    assert __version__[:4] == '0.0.'
 
 # @pytest.mark.asyncio
 def test_google_en_zh(caplog):

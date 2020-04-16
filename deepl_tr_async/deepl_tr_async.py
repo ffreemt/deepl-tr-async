@@ -64,8 +64,8 @@ poetry pyppeteer 0.0.25 websockets 6.0
 
 from typing import Any, List, Optional, Tuple, Union
 
-import os
-from pathlib import Path
+# import os
+# from pathlib import Path
 import asyncio
 from timeit import default_timer
 from urllib.parse import quote
@@ -75,13 +75,15 @@ from urllib.parse import quote
 
 from pyppeteer import launch
 from pyquery import PyQuery as pq
-import dotenv
 
 # import langid
 from polyglot.detect import Detector
 import logzero
 from logzero import logger
-from environs import Env
+# import dotenv
+# from environs import Env
+
+from deepl_tr_async.load_env import load_env
 
 # preload to memory
 # langid.classify("")
@@ -95,6 +97,7 @@ LOOP = asyncio.get_event_loop()
 # in shell or in .env
 # set HEADFUL=anything (include 0 False) to show browser
 
+_ = """
 ENV = Env()
 logger.info(" dotenv.find_dotenv(Path().cwd() / \".env\"): %s", Path().cwd() / '.env')
 _ = dotenv.find_dotenv(Path().cwd() / ".env")
@@ -121,6 +124,24 @@ try:
 except Exception as exc:
     logger.warning(' env.str("PROXY") exc: %s', exc)
     PROXY = ""
+# """
+
+try:
+    HEADFUL = bool(load_env("headful", "bool"))
+except Exception as exc:
+    logger.info("exc: %s", exc)
+    HEADFUL = False
+try:
+    DEBUG = bool(load_env("DEBUG", "bool"))
+except Exception as exc:
+    logger.info("exc: %s", exc)
+    DEBUG = False
+try:
+    PROXY = str(load_env("PROXY", "str"))
+except Exception as exc:
+    logger.info("exc: %s", exc)
+    PROXY = ""
+
 logger.info(" HEADFUL: %s", HEADFUL)
 logger.info(" DEBUG: %s", DEBUG)
 logger.info(" PROXY: %s", PROXY)
