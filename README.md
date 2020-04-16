@@ -26,10 +26,10 @@ python -c "import deepl_tr_async; print(deepl_tr_async.__version__)"
 
 ### Usage
 
-#### 命令行调用
-* 翻译系统剪贴板
+#### from the command line 命令行调用
+* translate the system clipboad (not tested in Linux) 翻译系统剪贴板
   `deepl-tr`
-* 翻译终端提供的句子
+* translate text supplied from the command line 翻译终端提供的句子
   `deepl-tr --copyfrom=false this is a test`
     <!--img src="img\sample2.png" height="170px" /-->
   ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/copyfrom-false.png)
@@ -38,7 +38,7 @@ python -c "import deepl_tr_async; print(deepl_tr_async.__version__)"
     <!--img src="https://github.com/ffreemt/deepl-tr-async/blob/master/img/copyfrom-false.png" height="170px" /-->
   ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/helpfull.png)
 
-#### 程序调用
+#### Programmatic use 程序调用
 ```
 import asyncio
 from deepl_tr_async import deepl_tr_async
@@ -66,4 +66,3 @@ res = loop.run_until_complete(_)
 print(res)
 ['Alternatives:\n全球冠状病毒大流行导致超过3万人死亡\n全球冠状病毒大流行导致3万多人死亡\n全球冠状病毒大流行导致超过30,000人死亡\n全球冠状病毒大流行导致3万多人丧生', '全球冠状病毒大流行杀死超过30,000人']
 ```
-
