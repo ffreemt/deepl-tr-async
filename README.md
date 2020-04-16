@@ -33,7 +33,11 @@ python -c "import deepl_tr_async; print(deepl_tr_async.__version__)"
   `deepl-tr --copyfrom=false this is a test`
     <!--img src="img\sample2.png" height="170px" /-->
   ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/copyfrom-false.png)
-* 帮助：
+* Help 帮助：
+  `deepl-tr -?`
+
+  or
+
   `deepl-tr --helpfull`
     <!--img src="https://github.com/ffreemt/deepl-tr-async/blob/master/img/copyfrom-false.png" height="170px" /-->
   ![img](https://raw.githubusercontent.com/ffreemt/deepl-tr-async/master/img/helpfull.png)
