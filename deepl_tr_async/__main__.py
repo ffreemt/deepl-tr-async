@@ -17,7 +17,7 @@ FLAGS = flags.FLAGS
 flags.DEFINE_string(
     'z-extra-info',
     'info',
-    'supply text anywhere in the command line',
+    'supply text anywhere in the command line when --copyfrom=false',
 )
 flags.DEFINE_string(
     # 'from-lang',
@@ -39,10 +39,10 @@ flags.DEFINE_string(
 )
 
 flags.DEFINE_integer("width", 60, "display width")
-flags.DEFINE_boolean('copyto', True, 'copy to clipboard')
+flags.DEFINE_boolean('copyto', True, 'copy thre result to clipboard')
 flags.DEFINE_boolean('copyfrom', True, 'copy from clipboard, default true (input taken fomr the terminal if false)')
 flags.DEFINE_boolean('debug', False, 'print debug messages.')
-flags.DEFINE_boolean('version', False, 'print version and exit.')
+flags.DEFINE_boolean('version', False, 'print version and exit')
 
 # FLAGS(shlex.split("app --from-lang=en"))
 
@@ -60,7 +60,7 @@ def proc_argv(argv):
         logger.debug("text from clipboard: %s", text)
     else:
         text = ' '.join(argv[1:])
-        logger.debug("argv from terinal: %s", text)
+        logger.debug("argv from terminal: %s", text)
 
     try:
         text = text.strip()
@@ -184,7 +184,7 @@ def proc_argv(argv):
     logger.info("translated to %s: \n\t%s", ', '.join(lang_list), _)
 
 
-def main():  # noqq=F811
+def main():  # noqa: F811
     app.run(proc_argv)
 
 
