@@ -24,21 +24,24 @@ flags.DEFINE_string(
     'mother-lang',
     'zh',
     'mother tongue language, default chinese)',
+    short_name='m'
 )
 flags.DEFINE_string(
     # 'to-lang',
     'second-lang',
     'en',
     'second language, default english',
+    short_name='s'
 )
 flags.DEFINE_string(
     # 'to-lang',
     'third-lang',
     'de',
     'third language, defaut german',
+    short_name='t'
 )
 
-flags.DEFINE_integer("width", 60, "display width")
+flags.DEFINE_integer("width", 60, "display width", short_name='w')
 flags.DEFINE_boolean('copyto', True, 'copy thre result to clipboard')
 flags.DEFINE_boolean('copyfrom', True, 'copy from clipboard, default true (input taken fomr the terminal if false)')
 flags.DEFINE_boolean('debug', False, 'print debug messages.')

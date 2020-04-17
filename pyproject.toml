@@ -1,12 +1,12 @@
 [tool.poetry]
 name = "deepl-tr-async"
-version = "0.0.2"
+version = "0.0.3-alpha.0"
 description = "deepl translate for free, based no pyppeteer"
 authors = ["ffreemt"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/ffremt/deepl-tr-async"
-repository = "https://github.com/ffremt/deepl-tr-async"
+homepage = "https://github.com/ffreemt/deepl-tr-async"
+repository = "https://github.com/ffreemt/deepl-tr-async"
 keywords = ["mt", "language", "learning"]
 classifiers = [
     "Environment :: Console",
@@ -14,9 +14,8 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.6.1"
 pyperclip = "^1.7.0"
-pyppeteer = "^0.0.25"
 pyquery = "^1.4.1"
 python-dotenv = "^0.12.0"
 logzero = "^1.5.0"
@@ -31,6 +30,7 @@ flake8 = "^3.7.9"
 pyicu = "^2.4.3"
 pycld2 = "^0.41"
 pytest-cov = "^2.8.1"
+pyppeteer2 = "^0.2.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
