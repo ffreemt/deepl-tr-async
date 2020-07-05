@@ -185,7 +185,8 @@ async def google_tr_async(
         count += 1
         try:
             # await page.goto(url_)
-            await page.goto(url_, {"timeout": 90 * 1000})
+            # await page.goto(url_, {"timeout": 90 * 1000})
+            await page.goto(url_, {"timeout": 9 * 1000})
             # await page.goto(url_, {"timeout": 0})
             break
         except Exception as exc:
@@ -276,8 +277,7 @@ async def google_tr_async(
         res = doc(".result-shield-container").text()
         if res:
             break
-        asyncio.sleep(0)
-        asyncio.sleep(0)
+        await asyncio.sleep(0)
 
     logger.debug("time: %.2f s", default_timer() - then)
 
@@ -287,7 +287,7 @@ async def google_tr_async(
         pass
     await page.close()
 
-    asyncio.sleep(0.2)
+    await asyncio.sleep(0)
 
     # copy('\n'.join(wrap(res, 45)))
 

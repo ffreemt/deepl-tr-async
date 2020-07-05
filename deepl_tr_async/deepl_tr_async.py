@@ -148,7 +148,10 @@ logger.info(" PROXY: %s", PROXY)
 
 
 async def get_ppbrowser(headless=not HEADFUL, proxy: str = PROXY):
-    """ get a puppeeter browser"""
+    """ get a puppeeter browser.
+
+    headless=not HEADFUL; proxy: str = PROXY
+    """
     try:
         browser = await launch(
             args=[
@@ -158,6 +161,7 @@ async def get_ppbrowser(headless=not HEADFUL, proxy: str = PROXY):
                 # "--autoClose=False",
                 # f"--proxy-server={PROXY}",
                 f"--proxy-server={proxy}",
+                "--disable-popup-blocking",  #
             ],
             # autoClose=False,
             headless=headless,

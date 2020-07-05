@@ -10,15 +10,24 @@ from deepl_tr_async import deepl_tr_async
 LOOP = asyncio.get_event_loop()
 
 def test_version():
-    assert __version__ == '0.0.3'
+    logger.info("\n\t version: %s", __version__)
+    assert __version__[:4] == '0.0.'
 
 # @pytest.mark.asyncio
+# --show-capture: invalid choice: 'yes' (choose from 'no', 'stdout', 'stderr', 'log', 'all')
+# -s show normal print/logger.info/debug output
 def test_deepl_en_zh(caplog):
     """ test_deepl_en_zh"""
 
     text = "test this and that"
-    # res = await deepl_tr_async(text)
     res = LOOP.run_until_complete(deepl_tr_async(text, to_lang="zh"))
-    with caplog.at_level(20):
-        logger.debug("test_deepl_en_zh res: %s", res)
-    assert "测验" in res
+    # res = await deepl_tr_async(text)
+    # with caplog.at_level(20):
+    with caplog.at_level(10):
+        # logger.info("test_deepl_en_zh res: %s", res)
+        logger.info("test_deepl_en_zh res: %s", res)
+        logger.info("caplog.text: %s", caplog.text)
+        # pytest -s
+
+    _ = ["测验", "试探", "检验"]
+    assert any(map(lambda elm: elm in res, _))
