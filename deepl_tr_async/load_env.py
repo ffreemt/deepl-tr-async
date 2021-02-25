@@ -15,18 +15,18 @@ def load_env(var="hotkey", attr="str"):
     load_env("hotkey")
 
     """
-    ENV = Env()
+    env = Env()
     _ = dotenv.find_dotenv(Path.cwd() / ".env")
     if not _:
         _ = dotenv.find_dotenv()
     if _:
         logger.info("Loading os.environ and .env from\n\t [%s]", _)
-        ENV.read_env(_)
+        env.read_env(_)
     else:
         logger.info(" No .env file found, os.environ only")
 
     try:
-        return getattr(ENV, attr)(var)
+        return getattr(env, attr)(var)  # OK
     except Exception as exc:
         logger.warning('\n\t %s, return empty str ""', exc)
         return ""

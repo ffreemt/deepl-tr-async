@@ -20,6 +20,10 @@ def test_deepl_en_zh(caplog):
     """ test_deepl_en_zh"""
 
     text = "test this and that"
+
+    text1 = "A dedicate website will go live in January and the Task Force has planned a two to three-month sprint to kick start its work."
+    exp1 = "专门网站将于1月上线，工作队计划用两到三个月的时间冲刺，以启动其工作。"
+
     res = LOOP.run_until_complete(deepl_tr_async(text, to_lang="zh"))
     # res = await deepl_tr_async(text)
     # with caplog.at_level(20):

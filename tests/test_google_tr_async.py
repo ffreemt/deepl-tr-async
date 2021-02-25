@@ -26,7 +26,18 @@ def test_google_en_zh(caplog):
     logger.info(" res: %s", res)
 
     with caplog.at_level(20):  # caplog.text
-        logger.debug("test_deepl_en_zh res: %s", res)
-    assert any(map(lambda elm: elm in "测试这个", "测试这个"))
+        logger.debug("test_google_en_zh res: %s", res)
+    assert all(map(lambda elm: elm in res, "测试个"))
+
+def test_google_en_de():
+    """ test_google_en_de"""
+
+    text = "test this and that"
+    # res = await deepl_tr_async(text)
+    # res = LOOP.run_until_complete(deepl_tr_async(text, to_lang="de"))
+    res = LOOP.run_until_complete(google_tr_async(text, to_lang="de"))
+    logger.info(" res: %s", res)
+
+    assert res.lower() == "teste dies und das"
 
     # pytest -s to show log in this file

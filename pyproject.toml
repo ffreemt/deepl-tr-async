@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deepl-tr-async"
-version = "0.0.3"
+version = "0.0.4"
 description = "deepl translate for free, based no pyppeteer"
 authors = ["ffreemt"]
 license = "MIT"
@@ -13,6 +13,7 @@ classifiers = [
     "Operating System :: OS Independent",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
+
 [tool.poetry.dependencies]
 python = "^3.6.1"
 pyperclip = "^1.7.0"

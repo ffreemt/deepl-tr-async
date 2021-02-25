@@ -163,6 +163,7 @@ async def get_ppbrowser(headless=not HEADFUL, proxy: str = PROXY):
                 f"--proxy-server={proxy}",
                 "--disable-popup-blocking",  #
             ],
+            executablePath=r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe", # use chrome
             # autoClose=False,
             headless=headless,
             dumpio=True,

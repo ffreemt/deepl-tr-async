@@ -23,6 +23,7 @@ from typing import Any, List, Optional, Tuple, Union
 
 # import os
 import asyncio
+import re
 from timeit import default_timer
 from urllib.parse import quote
 
@@ -72,7 +73,7 @@ logger.info(" DEBUG: %s", DEBUG)
 
 
 # fmt: off
-async def google_tr_async(
+async def google_tr_async(  # noqa: C901
         text: str,
         from_lang: str = "auto",
         to_lang: str = "auto",
@@ -85,6 +86,8 @@ async def google_tr_async(
     """ google via pyppeteer
     from_lang = 'de'
     to_lang = 'en'
+    from_lang = 'en'
+    to_lang = 'zh'
     debug = 1
     waitfor: Optional[float] = None
     browser=BROWSER
@@ -160,7 +163,7 @@ async def google_tr_async(
     else:
         # giving up
         logger.warning("Unable to make newPage work...")
-        raise Exception("Unable to get newPage work, giving up...")
+        raise Exception("Unable to get newPage to work, giving up...")
 
     # set timeout, default is 30 s
     _ = """\
@@ -186,7 +189,7 @@ async def google_tr_async(
         try:
             # await page.goto(url_)
             # await page.goto(url_, {"timeout": 90 * 1000})
-            await page.goto(url_, {"timeout": 9 * 1000})
+            await page.goto(url_, {"timeout": 19 * 1000})
             # await page.goto(url_, {"timeout": 0})
             break
         except Exception as exc:
@@ -195,8 +198,8 @@ async def google_tr_async(
             logger.warning("page.goto exc: %s, attempt %s", str(exc)[:100], count)
     else:
         # return
-        logger.error("Unable to fetch %s...", url_[:20])
-        raise Exception("Unable to fetch %s..." % url_[:20])
+        logger.error("Unable to fetch %s...", url_[:50])
+        raise Exception("Unable to fetch %s..." % url_[:50])
 
     # wait for input area ".lmt__source_textarea"
     # wait for input area ".result-shield-container"
@@ -263,18 +266,41 @@ async def google_tr_async(
         logger.warning(" page.waitFor exc: %s", exc)
         content = '<div class=".result-shield-container">%s</div>' % exc
 
-    doc = pq(content)
-    res = doc(".result-shield-container").text()
+    def filter_trtext(content0: str, to_lang0: str) -> str:
+        doc = pq(content0)
+        res: str = doc(".result-shield-container").text()
+
+        # when .result-shield-container fails,
+        # use regex
+        if not res:
+            _ = re.findall(rf'class=".{{4,7}}" lang="{to_lang0}">[^<].*?</div><div', content0)
+            if _:
+                res = _[0][:-10]  # strip last 10 chars
+                # remove prefix ...lang="zh-CN">
+                res = res.split(f'lang="{to_lang0}">')[1]
+
+        # return '' when res is []
+        if not res:
+            res = ""
+        return res
+
+    res = filter_trtext(content, to_lang)
 
     count = -1
-    while count < 50:
+    # wait a bit longer if res is empty
+    while count < 50 and not res:
         count += 1
         logger.debug(" extra %s x 100 ms", count + 1)
         await page.waitFor(100)
 
         content = await page.content()
+        _ = """
         doc = pq(content)
         res = doc(".result-shield-container").text()
+        # """
+
+        res = filter_trtext(content, to_lang)
+
         if res:
             break
         await asyncio.sleep(0)
