@@ -1,18 +1,23 @@
 """ test deelp """
 import asyncio
+
 # import pytest
 from logzero import logger
+import warnings
 
 from deepl_tr_async import __version__
+
 # from deepl_tr_async.deepl_tr_async import deepl_tr_async
 # from deepl_tr_async import deepl_tr_async
 from deepl_tr_async.google_tr_async import google_tr_async
+
+warnings.filterwarnings("ignore", ".*pure-python.*")  # regex
 
 LOOP = asyncio.get_event_loop()
 
 
 def test_version():
-    assert __version__[:4] == '0.0.'
+    assert __version__[:4] == "0.0."
 
 
 # @pytest.mark.asyncio
@@ -28,6 +33,7 @@ def test_google_en_zh(caplog):
     with caplog.at_level(20):  # caplog.text
         logger.debug("test_google_en_zh res: %s", res)
     assert all(map(lambda elm: elm in res, "测试个"))
+
 
 def test_google_en_de():
     """ test_google_en_de"""

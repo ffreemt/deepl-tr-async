@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "deepl-tr-async"
 version = "0.0.4"
-description = "deepl translate for free, based no pyppeteer"
+description = "deepl translate for free, based on pyppeteer"
 authors = ["ffreemt"]
 license = "MIT"
 readme = "README.md"
@@ -15,10 +15,9 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6.1"
+python = "^3.7"
 pyperclip = "^1.7.0"
 pyquery = "^1.4.1"
-python-dotenv = "^0.12.0"
 logzero = "^1.5.0"
 environs = "^7.3.1"
 linetimer = "^0.1.4"
@@ -28,10 +27,12 @@ fuzzywuzzy = "^0.18.0"
 pyinstaller = "^3.6"
 tqdm = "^4.43.0"
 flake8 = "^3.7.9"
-pyicu = "^2.4.3"
+pyicu = "^2.6"
 pycld2 = "^0.41"
 pytest-cov = "^2.8.1"
 pyppeteer2 = "^0.2.2"
+get-ppbrowser = "^0.1.1"
+ipython = "^7.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

@@ -35,8 +35,15 @@ import logzero
 from logzero import logger
 # from environs import Env
 
-from deepl_tr_async import BROWSER, get_ppbrowser, HEADFUL, DEBUG
+# from deepl_tr_async import BROWSER, get_ppbrowser, HEADFUL, DEBUG
+from get_ppbrowser import BROWSER, get_ppbrowser
 from deepl_tr_async.google_langpair import google_langpair
+from get_ppbrowser.config import Settings
+
+config = Settings()
+HEADFUL = config.headful
+DEBUG = config.debug
+PROXY = config.proxy
 
 URL = r"https://translate.google.cn/#view=home&op=translate&"
 # if not LOOP.is_closed(): LOOP = asyncio.new_event_loop()
@@ -159,7 +166,7 @@ async def google_tr_async(  # noqa: C901
         except Exception as exc:
             logger.error(" browser.newPage exc: %s, failed attempt: %s", exc, count)
             browser = await get_ppbrowser(not HEADFUL)
-            asyncio.sleep(0)
+            await asyncio.sleep(0)
     else:
         # giving up
         logger.warning("Unable to make newPage work...")
@@ -193,7 +200,7 @@ async def google_tr_async(  # noqa: C901
             # await page.goto(url_, {"timeout": 0})
             break
         except Exception as exc:
-            asyncio.sleep(0)
+            await asyncio.sleep(0)
             page = await browser.newPage()
             logger.warning("page.goto exc: %s, attempt %s", str(exc)[:100], count)
     else:

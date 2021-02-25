@@ -8,10 +8,11 @@ from textwrap import fill
 import logzero
 from logzero import logger
 
-from deepl_tr_async.deepl_tr_async import main, LOOP
+from deepl_tr_async.deepl_tr_async import main
 from deepl_tr_async import deepl_tr_async
 from deepl_tr_async.google_tr_async import google_tr_async
 from deepl_tr_async.detect_lang import detect_lang
+from get_ppbrowser import LOOP
 
 FLAGS = flags.FLAGS
 flags.DEFINE_string(

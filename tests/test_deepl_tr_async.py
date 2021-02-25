@@ -1,17 +1,20 @@
-""" test deelp """
+"""Test deelp."""
 import asyncio
 import pytest
 from logzero import logger
 
 from deepl_tr_async import __version__
+
 # from deepl_tr_async.deepl_tr_async import deepl_tr_async
 from deepl_tr_async import deepl_tr_async
 
 LOOP = asyncio.get_event_loop()
 
+
 def test_version():
     logger.info("\n\t version: %s", __version__)
-    assert __version__[:4] == '0.0.'
+    assert __version__[:4] == "0.0."
+
 
 # @pytest.mark.asyncio
 # --show-capture: invalid choice: 'yes' (choose from 'no', 'stdout', 'stderr', 'log', 'all')

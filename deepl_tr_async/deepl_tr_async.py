@@ -84,20 +84,22 @@ from logzero import logger
 # from environs import Env
 
 from deepl_tr_async.load_env import load_env
+from get_ppbrowser import BROWSER, LOOP, get_ppbrowser
+from get_ppbrowser.config import Settings
 
-# preload to memory
-# langid.classify("")
-
-# browser = await launch(headless=False)
+config = Settings()
+HEADFUL = config.headful
+DEBUG = config.debug
+PROXY = config.proxy
 
 URL = r"https://www.deepl.com/translator"
-LOOP = asyncio.get_event_loop()
+# LOOP = asyncio.get_event_loop()
 
 # dotenv.load_dotenv(verbose=1)
 # in shell or in .env
 # set HEADFUL=anything (include 0 False) to show browser
 
-_ = """
+_ = r"""
 ENV = Env()
 logger.info(" dotenv.find_dotenv(Path().cwd() / \".env\"): %s", Path().cwd() / '.env')
 _ = dotenv.find_dotenv(Path().cwd() / ".env")
@@ -125,6 +127,8 @@ except Exception as exc:
     logger.warning(' env.str("PROXY") exc: %s', exc)
     PROXY = ""
 # """
+
+_ = r'''  # poetry add get-ppbrowser/from get_ppbrowser import BROWSER, get_ppbrowser
 
 try:
     HEADFUL = bool(load_env("headful", "bool"))
@@ -188,7 +192,7 @@ except Exception as exc:
     )
     logger.warning(" %s", "Note that this will also kill your chrome browser.")
     raise SystemExit(1)
-
+# '''
 
 # fmt: off
 # browser = LOOP.run_until_complete(get_ppbrowser(not HEADFUL))
@@ -210,7 +214,7 @@ async def deepl_tr_async(
 
     # fmt: on
 
-    if debug:
+    if debug or DEBUG:
         logzero.loglevel(10)
     else:
         logzero.loglevel(20)
@@ -265,7 +269,7 @@ async def deepl_tr_async(
             break
         except Exception as exc:
             logger.error(" browser.newPage exc: %s, failed attempt: %s", exc, count)
-            asyncio.sleep(0)
+            await asyncio.sleep(0)
     else:
         # giving up
         return
@@ -290,7 +294,7 @@ async def deepl_tr_async(
             # await page.goto(url_, {"timeout": 0})
             break
         except Exception as exc:
-            asyncio.sleep(0)
+            await asyncio.sleep(0)
             page = await browser.newPage()
             logger.warning("page.goto exc: %s, attempt %s", str(exc)[:100], count)
     else:
@@ -375,8 +379,7 @@ async def deepl_tr_async(
         res = doc(".lmt__translations_as_text").text()
         if res:
             break
-        asyncio.sleep(0)
-        asyncio.sleep(0)
+        await asyncio.sleep(0)
 
     logger.debug("time: %.2f s", default_timer() - then)
 
@@ -386,7 +389,7 @@ async def deepl_tr_async(
         pass
     await page.close()
 
-    asyncio.sleep(0.2)
+    await asyncio.sleep(0.2)
 
     # copy('\n'.join(wrap(res, 45)))
 
@@ -444,7 +447,7 @@ def deepl_mpages(  # pragrma: no cover
 
 
 def main():
-    """main"""
+    """Main."""
     # from time import sleep
 
     # pylint: disable=line-too-long

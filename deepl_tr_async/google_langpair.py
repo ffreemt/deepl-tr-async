@@ -7,6 +7,9 @@ import logging
 import pytest
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+import warnings
+
+warnings.filterwarnings("ignore", ".*pure-python.*")  # regex
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.addHandler(logging.NullHandler())
