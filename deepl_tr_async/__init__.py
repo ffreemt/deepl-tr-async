@@ -5,6 +5,6 @@ from deepl_tr_async.deepl_tr_async import deepl_tr_async  # noqa: F401
 
 # version__ = """0.0.1"""
 # date__ = "2020.3.24"
-__version__ = """0.0.3"""
-__date__ = "2020.4.17"
+__version__ = """0.0.5"""
+__date__ = "2021.2.27"
 VERSION = tuple(__version__.split("."))

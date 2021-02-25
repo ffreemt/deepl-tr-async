@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "deepl-tr-async"
-version = "0.0.4"
+version = "0.0.5"
 description = "deepl translate for free, based on pyppeteer"
 authors = ["ffreemt"]
 license = "MIT"
