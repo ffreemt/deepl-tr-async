@@ -21,7 +21,7 @@ more-itertools==8.2.0
 packaging==20.3
 pluggy==0.13.1
 polyglot==16.7.4
-py==1.8.1
+py==1.11.0
 pycld2==0.41
 pycodestyle==2.5.0
 pyee==7.0.1
